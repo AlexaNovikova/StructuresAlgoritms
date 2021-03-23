@@ -4,38 +4,66 @@ import java.util.ListIterator;
 
 public class Main {
     public static void main(String[] args) {
-      MyLinkedList<String> mll = new MyLinkedList<>();
-      mll.insertFirst("one");
-      mll.insertFirst("two");
-      mll.insertFirst("one");
-      mll.insertLast("last");
-      mll.insert(0, "five");
-      System.out.println(mll);
-      ListIterator<String >li =mll.listIterator();
-
-       int i = 1;
-
-//      while(li.hasPrevious()){
-//        li.previous();
-//        li.add(i+ "");
-//        i++;
-//      }
-//      System.out.println(mll);
+        MyLinkedList<String> mll = new MyLinkedList<>();
+        mll.insertFirst("one");
+        mll.insertFirst("two");
+        mll.insertFirst("tree");
+        mll.insertFirst("four");
+        mll.insertFirst("five");
+        System.out.println(mll);
+        ListIterator<String> li = mll.listIterator();
 
 
-      while(li.hasNext()){
-        li.next();
-        li.add(i+ "");
-        i++;
-      }
-      System.out.println(mll);
-//      while(li.hasPrevious()){
-//        li.previous();
-//        li.add("s");
-//        i--;
-//      }
-//      System.out.println(mll);
+        System.out.println("Перебор итератором с начала");
+        while (li.hasNext()) {
+            System.out.println(li.next());
+        }
+        System.out.println();
 
+        System.out.println("Перебор итератором с конца");
+        while (li.hasPrevious()) {
+            System.out.println(li.previous());
+        }
+        System.out.println();
+
+        System.out.println("Перебор итератором с начала и добавление");
+        while (li.hasNext()) {
+            li.next();
+            li.add("next");
+
+        }
+        System.out.println(mll);
+
+        System.out.println("Перебор итератором с конца и добавление");
+        while (li.hasPrevious()) {
+            li.previous();
+            li.add("prev");
+
+        }
+        System.out.println(mll);
+        int i = 1;
+        System.out.println("Перебор итератором с начала и изменения значения");
+        while (li.hasNext()) {
+            li.next();
+            li.set("" + i);
+            i++;
+        }
+        System.out.println(mll);
+
+        System.out.println("Перебор итератором с конца и изменения значения");
+        while (li.hasPrevious()) {
+            li.previous();
+            li.set("new");
+        }
+        System.out.println(mll);
+
+        System.out.println("Перебор итератором с начала и удаление значения");
+        while (li.hasNext()) {
+            li.next();
+            li.remove();
+            i++;
+        }
+        System.out.println(mll);
 //        MyLinkedStack<Integer> stack = new MyLinkedStack<>();
 //        stack.push(1);
 //        stack.push(2);

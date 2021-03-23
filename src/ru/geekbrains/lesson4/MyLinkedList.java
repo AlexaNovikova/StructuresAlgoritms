@@ -22,21 +22,32 @@ public class MyLinkedList<T> implements Iterable<T> {
     private class ListIter extends Iter implements ListIterator<T> {
         int index = 0;
         Node current = new Node(null, first);
-        Node currentFromEnd = new Node(null, null, last);
         boolean isNext;
         boolean isPrev;
 
+
+        /**
+         * Метод начинает перебор элементов с конца,
+         * возвращает True если есть предшествующий элемент,
+         * при достижении начала списка происходит установка итератора на first элементе,
+         * метод возвращает false
+         */
         @Override
         public boolean hasPrevious() {
-            return currentFromEnd.getPrev() != null;
+            if (current.getPrev() != null) {
+                return true;
+            } else {
+                current = new Node(null, first);
+                return false;
+            }
         }
 
         @Override
         public T previous() {
-            isPrev=true;
-            isNext=false;
-            currentFromEnd = currentFromEnd.getPrev();
-            return currentFromEnd.getValue();
+            isPrev = true;
+            isNext = false;
+            current = current.getPrev();
+            return current.getValue();
         }
 
         @Override
@@ -52,69 +63,89 @@ public class MyLinkedList<T> implements Iterable<T> {
         }
 
 
-        //удаляет элемент который прошли методом next, prev
         @Override
         public void remove() {
-            if (currentFromEnd.getValue() != null) {
-                MyLinkedList.this.remove(currentFromEnd.value);
-            }
             if (current.getValue() != null) {
                 MyLinkedList.this.remove(current.value);
             }
         }
 
-        //уcтановить значение элементу который прошли методом next, prev
+
+        /**
+         * @param t - новое значение элемента списка
+         *          устанавливает значение, указанное параметром, для элемента пройденного
+         *          итератором методом Next, prev.
+         */
+
         @Override
         public void set(T t) {
-            if (isPrev&&(currentFromEnd.getPrev()!= null||currentFromEnd.getPrev()==null&&currentFromEnd.getNext()!=null)) {
-                currentFromEnd.setValue(t);
+            if (isPrev && (current.getPrev() != null || current.getPrev() == null && current.getNext() != null)) {
+                current.setValue(t);
             }
 
-            if (isNext&&((current.getNext() != null||current.getPrev()!=null&&current.getNext()==null))) {
-               current.setValue(t);
+            if (isNext && ((current.getNext() != null || current.getPrev() != null && current.getNext() == null))) {
+                current.setValue(t);
             }
         }
 
-        //добавить элемент который прошли методом next, prev
+        /**
+         * @param t - значение нового элемента списка
+         *          создает новый элемент списка и добавляет его между пройденным элементом
+         *          методами Next, Prev
+         *          и текущим положением итератора
+         */
+
         @Override
         public void add(T t) {
             if (isPrev) {
-                if (currentFromEnd.getPrev() != null) {
-                    Node node = new Node(t, currentFromEnd, currentFromEnd.getPrev());
-                    currentFromEnd.getPrev().setNext(node);
-                    currentFromEnd.setPrev(node);
+                if (current.getPrev() != null) {
+                    Node node = new Node(t, current, current.getPrev());
+                    current.getPrev().setNext(node);
+                    current.setPrev(node);
                     previous();
-                } else if (currentFromEnd.getPrev() == null && currentFromEnd.getNext() != null) {
-                   Node node = new Node(t, currentFromEnd, null);
-                   currentFromEnd.setPrev(node);
-                   first=node;
-                   previous();
+                } else if (current.getPrev() == null && current.getNext() != null) {
+                    Node node = new Node(t, current, null);
+                    current.setPrev(node);
+                    first = node;
+                    previous();
                 }
             }
             if (isNext) {
                 if (current.getNext() != null) {
-                    Node node = new Node(t, current.getNext(),current);
+                    Node node = new Node(t, current.getNext(), current);
                     current.getNext().setPrev(node);
                     current.setNext(node);
                     next();
                 } else if (current.getNext() == null && current.getPrev() != null) {
                     Node node = new Node(t, null, current);
                     current.setNext(node);
-                    last=node;
+                    last = node;
                     next();
                 }
             }
         }
 
+        /**
+         * Метод начинает перебор элементов с начала списка,
+         * возвращает True если есть последующий элемент(элемент не равен null),
+         * при достижении конца списка
+         * указатель устанавливается на последнем элементе и метод возвращает false
+         */
         @Override
         public boolean hasNext() {
-            return current.getNext() != null;
+            if (current.getNext() != null) {
+                return true;
+            } else {
+                current = new Node(null, null, last);
+                return false;
+            }
+
         }
 
         @Override
         public T next() {
-            isPrev=false;
-            isNext=true;
+            isPrev = false;
+            isNext = true;
             current = current.getNext();
             return current.getValue();
         }
