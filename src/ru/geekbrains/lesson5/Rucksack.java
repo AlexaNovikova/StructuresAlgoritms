@@ -1,11 +1,10 @@
 package ru.geekbrains.lesson5;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Rucksack {
     private double bestPrice;
-    private int maxWeight;
+    private double maxWeight;
     ArrayList<Item> contents;
 
     public Rucksack(int maxWeight) {
