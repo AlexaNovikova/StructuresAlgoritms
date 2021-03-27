@@ -50,9 +50,9 @@ public class MyArrayList<T extends Comparable<T>> {
     public void add(int index, T item) {
         // проверка на превышение лоад фактора (0.75)
         checkLoadF();
-        if (index>=size){
-            throw new ArrayIndexOutOfBoundsException(index);
-        }
+//        if (index>=size){
+//           throw new ArrayIndexOutOfBoundsException(index);
+//        }
         for (int i = size; i > index; i--) {
             list[i] = list[i - 1];
         }
@@ -188,5 +188,37 @@ public class MyArrayList<T extends Comparable<T>> {
                 return;
             }
         }
+    }
+    private void quickSort(int lo, int hi){
+        if(lo>=hi){
+            return;
+        }
+        int mid = lo+ (hi-lo)/2;
+        T opora = list[mid];
+        int i = lo;
+        int j= hi;
+        while (i<=j){
+            while (less(list[i], opora)){
+                i++;
+            }
+            while (less(opora, list[j])){
+                j--;
+            }
+            if(i<=j){
+                swap(i,j);
+                i++;
+                j--;
+            }
+        }
+        if(lo<j){
+            quickSort(lo,j);
+        }
+        if(hi>i){
+            quickSort(i,hi);
+        }
+    }
+
+    public void qSort(){
+        quickSort(0, size()-1);
     }
 }

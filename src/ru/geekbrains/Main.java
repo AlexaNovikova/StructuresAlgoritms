@@ -29,13 +29,15 @@ public class Main {
 //        System.out.println(msal);
 //        System.out.println(msal.binaryIndexOf(13));
 
-        MyArrayList<Integer> myArrayList = new MyArrayList<>(100000);
+        MyArrayList<Integer> myArrayList = new MyArrayList<>(10);
         Random r = new Random();
-        for (int i = 0; i < 100000; i++) {
-            myArrayList.add(r.nextInt(1000));
-        }
+        for (int i = 0; i < 10; i++) {
+            myArrayList.add(r.nextInt(10));
+       }
+        myArrayList.qSort();
+        System.out.println(myArrayList);
 
-        // получено время - 9614мс
+            // получено время - 9614мс
 //        long timeStart = System.currentTimeMillis();
 //        myArrayList.selectionSort();
 //        long timeEnd = System.currentTimeMillis();
@@ -43,7 +45,7 @@ public class Main {
 //        System.out.println("Time of selectionSort : "+ deltaTime);
 
 
-        // 3982 мс
+            // 3982 мс
 //        long timeStart = System.currentTimeMillis();
 //        myArrayList.insertionSort();
 //        long timeEnd = System.currentTimeMillis();
@@ -51,7 +53,7 @@ public class Main {
 //        System.out.println("Time of insertionSort : "+ deltaTime);
 
 
-        // Time of bubbleSort : 28822
+            // Time of bubbleSort : 28822
 //        long timeStart = System.currentTimeMillis();
 //        myArrayList.bubbleSort();
 //        long timeEnd = System.currentTimeMillis();
@@ -59,13 +61,20 @@ public class Main {
 //        System.out.println("Time of bubbleSort : "+ deltaTime);
 
 
-      //  Time of bubbleSortOptimal : 28989
-        long timeStart = System.currentTimeMillis();
-        myArrayList.bubbleSortOptimal();
-        long timeEnd = System.currentTimeMillis();
-        long deltaTime = timeEnd-timeStart;
-        System.out.println("Time of bubbleSortOptimal : "+ deltaTime);
-    }
+            //  Time of bubbleSortOptimal : 28989
+//        long timeStart = System.currentTimeMillis();
+////        myArrayList.bubbleSortOptimal();
+////        long timeEnd = System.currentTimeMillis();
+////        long deltaTime = timeEnd-timeStart;
+////        System.out.println("Time of bubbleSortOptimal : "+ deltaTime);
+//
+//        MySortedArrayList<Integer> msa = new MySortedArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            msa.add(r.nextInt(10));
+//        }
+//        System.out.println(msa);
+//        System.out.println(msa.recFind(3));
+        }
 
 
 }
