@@ -37,12 +37,14 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
 
     private int height(Node node) {
         if (node == null || node.right == null && node.left == null) {
-            return 0;
-        } else if (node.left != null && node.right != null) {
-            return Math.max(height(node.left) + 1, height(node.right) + 1);
-        } else if (node.left != null) {
-            return height(node.left) + 1;
-        } else return height(node.right) + 1;
+            return 0;}
+//        } else if (node.left != null && node.right != null) {
+            return Math.max(height(node.left), height(node.right)) + 1;
+//        }
+//        else if (node.left != null) {
+//            return height(node.left) + 1;
+//        } else return height(node.right) + 1;
+
     }
 
 
@@ -51,19 +53,27 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
     }
 
     private boolean isBalanced(Node node) {
-        if (node.right!=null&&node.left!=null) {
-            return height(node.left)+1==height(node.right)||
-                    height(node.right)+1==height(node.left)||
-                    height(node.left)==height(node.right);
+        if(node==null){
+            return true;
         }
-        if (node.right==null&&node.left!=null){
-            return height(node.left)<=1;
+        if(node.right==null&&node.left==null){
+            return true;
         }
-        if (node.left==null&&node.right!=null){
-            return height(node.right)<=1;
+//        if (node.right!=null&&node.left!=null) {
+//            return height(node.left)+1==height(node.right)||
+//                    height(node.right)+1==height(node.left)||
+//                    height(node.left)==height(node.right);
+            return Math.abs(height(node.left)-height(node.right))<=1
+                    &&isBalanced(node.right)&&isBalanced(node.left);
         }
-        return node.left == null && node.right == null;
-    }
+//        if (node.right==null&&node.left!=null){
+//            return height(node.left)<=1;
+//        }
+//        if (node.left==null&&node.right!=null){
+//            return height(node.right)<=1;
+//        }
+      //  return (node.left == null && node.right == null);
+   // }
 
     public boolean isEmpty() {
         return root == null;

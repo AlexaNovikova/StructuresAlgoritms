@@ -3,19 +3,19 @@ package ru.geekbrains.lesson6;
 public class Main {
 
     public static void main(String[] args) {
-//        MyTreeMap<Integer, String> myMap = new MyTreeMap<>();
-//        myMap.put(5, "five");
-//        myMap.put(1, "one");
-//        myMap.put(4, "four");
-//        myMap.put(2, "two");
-//        myMap.put(6, "six");
-//        myMap.put(7, "seven");
-//        myMap.put(3, "three");
-//        myMap.put(8, "eight");
-//        myMap.put(0, "zero");
+        MyTreeMap<Integer, String> myMap = new MyTreeMap<>();
+        myMap.put(5, "five");
+        myMap.put(1, "one");
+        myMap.put(4, "four");
+        myMap.put(2, "two");
+        myMap.put(6, "six");
+        myMap.put(7, "seven");
+        myMap.put(3, "three");
+        myMap.put(8, "eight");
+        myMap.put(0, "zero");
 
-   //
-//        System.out.println(myMap.isBalancedTree());
+
+        System.out.println(myMap.isBalancedTree());
 //
 //        myMap.put(3, "three");
 //
@@ -37,15 +37,15 @@ public class Main {
 //        System.out.println(myMap);
 //        System.out.println(myMap.height());
 
-        int kolTrees = 20000;
-        int kolLevels = 6;
-        MyTreeMap<Integer, String>[] maps = new MyTreeMap[kolTrees];
-
-        for (int i = 0; i < kolTrees; i++) {
-            maps[i] = createTree(kolLevels);
-        }
-        double percentOfNotBalanced = checkPercentOfNotBalancedTrees(maps);
-        System.out.println("Процент несбалансированных деревьев: " +percentOfNotBalanced+ " %.");
+//        int kolTrees = 100000;
+//        int kolLevels = 6;
+//        MyTreeMap<Integer, String>[] maps = new MyTreeMap[kolTrees];
+//
+//        for (int i = 0; i < kolTrees; i++) {
+//            maps[i] = createTree(kolLevels);
+//        }
+//        double percentOfNotBalanced = checkPercentOfNotBalancedTrees(maps);
+//        System.out.println("Процент несбалансированных деревьев: " +percentOfNotBalanced+ " %.");
 
     }
 
