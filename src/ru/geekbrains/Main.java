@@ -1,71 +1,108 @@
 package ru.geekbrains;
 
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
-
 public class Main {
 
     public static void main(String[] args) {
-//        int[] arr = new int[10];
-//        int[][] arr2 = new int[10][];
+//	int a = 5;
+//	int b = 5;
+//        System.out.println(a==b);
+//        int c=5;
 //
-//        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 2, 2, 2, 3, 4, 5));
-//        list.removeIf(i -> i == 2);
-//        list.removeAll(Collections.singletonList(2));
-//        list.replaceAll(i -> i*i);
-//        list.remove(new Integer(2));
-//        System.out.println(list);
-
-
-//        MySortedArrayList<Integer> msal= new MySortedArrayList<>();
-//        msal.add(13);
-//        msal.add(5);
-//        msal.add(1);
-//        msal.add(13);
-//        msal.add(6);
-//        msal.add(1);
-//        msal.add(2);
-//        System.out.println(msal);
-//        System.out.println(msal.binaryIndexOf(13));
-
-        MyArrayList<Integer> myArrayList = new MyArrayList<>(100000);
-        Random r = new Random();
-        for (int i = 0; i < 100000; i++) {
-            myArrayList.add(r.nextInt(1000));
-        }
-
-        // получено время - 9614мс
-//        long timeStart = System.currentTimeMillis();
-//        myArrayList.selectionSort();
-//        long timeEnd = System.currentTimeMillis();
-//        long deltaTime = timeEnd-timeStart;
-//        System.out.println("Time of selectionSort : "+ deltaTime);
-
-
-        // 3982 мс
-//        long timeStart = System.currentTimeMillis();
-//        myArrayList.insertionSort();
-//        long timeEnd = System.currentTimeMillis();
-//        long deltaTime = timeEnd-timeStart;
-//        System.out.println("Time of insertionSort : "+ deltaTime);
-
-
-        // Time of bubbleSort : 28822
-//        long timeStart = System.currentTimeMillis();
-//        myArrayList.bubbleSort();
-//        long timeEnd = System.currentTimeMillis();
-//        long deltaTime = timeEnd-timeStart;
-//        System.out.println("Time of bubbleSort : "+ deltaTime);
-
-
-      //  Time of bubbleSortOptimal : 28989
-        long timeStart = System.currentTimeMillis();
-        myArrayList.bubbleSortOptimal();
-        long timeEnd = System.currentTimeMillis();
-        long deltaTime = timeEnd-timeStart;
-        System.out.println("Time of bubbleSortOptimal : "+ deltaTime);
+//        inc(c);
+//        System.out.println(c);
+        Person p = new Person("Ivan");
+        update(p);
+        System.out.println(p.getName());
     }
+    public static void update(Person p){
+        p.setName("Super "+p.getName());
+    }
+    public static void inc(int c) {
+        c++;
+        System.out.println(c);
+    }
+
+    //O(log n)
+    public static int find1(int x){
+        int i  =1;
+        while(i<x){
+            i*=2;
+        }
+        return i;
+    }
+
+
+    //O(n^1/2)
+    public static boolean find2(int x){
+        for (int i = 2; i*i <= x; i++) {
+            if(x%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    //O(N)
+    public static int find3(int x){
+        int sum = 0;
+        for (int i = 0; i <= x; i++) {
+            sum+=i;
+        }
+        return sum;
+    }
+
+  //O(n*log(n))
+    public static int find4(int x){
+        int sum =0;
+        for (int i = 1; i <= x; i++) {
+            for (int j = 1; j < x; j*=2) {
+                sum +=i*j;
+            }
+        }
+        return sum;
+    }
+
+
+    //O(N*N)
+    public static int find5(int x){
+        int sum =0;
+        for (int i = 1; i <= x; i++) {
+            for (int j = 1; j < x; j+=2) {
+                sum +=i*j;
+            }
+        }
+        return sum;
+    }
+
+    //O(N*N*N1/2)  O(N^5/2)
+    public static int find6(int x){
+        int sum =0;
+        int s = (int) Math.sqrt(x);
+        for (int i = 1; i <= x; i++) {
+            for (int j = 1; j < x; j+=2) {
+                for (int k = 0; k < s; k++) {
+                    sum+=i+j+k;
+                }
+            }
+        }
+        return sum;
+    }
+
+
+    //O(N^3)
+    public static int find7(int x){
+        int sum =0;
+        for (int i = 1; i <= x; i++) {
+            for (int j = 1; j < x; j+=2) {
+                for (int k = 0; k < x; k++) {
+                    sum+=i+j+k;
+                }
+            }
+        }
+        return sum;
+    }
+
 
 
 }
