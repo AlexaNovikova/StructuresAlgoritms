@@ -319,8 +319,8 @@ public class MyLinkedList<T> implements Iterable<T> {
             i++;
         }
         Node newNode = new Node(item, current.getNext(), current);
-        current.getNext().setPrev(newNode);
         current.setNext(newNode);
+        current.getPrev().setNext(newNode);
         size++;
     }
 

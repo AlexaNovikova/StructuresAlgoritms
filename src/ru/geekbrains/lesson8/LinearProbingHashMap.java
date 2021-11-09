@@ -61,7 +61,7 @@ public class LinearProbingHashMap<Key, Value> {
         size++;
     }
 
-   public Value gey(Key key){
+   public Value get(Key key){
        checkKeyNotNull(key);
        int i = hash(key);
        int step = hash2(key);

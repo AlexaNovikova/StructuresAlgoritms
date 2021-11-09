@@ -26,12 +26,12 @@ public class Main {
         lphm.put(3, "three");
         lphm.put(6, "two");
         lphm.put(8, "three");
-        System.out.println(lphm.gey(2));
+        System.out.println(lphm.get(2));
         System.out.println(lphm);
         System.out.println(lphm.size());
         lphm.remove(2);
         System.out.println(lphm);
-        System.out.println(lphm.gey(2));
+        System.out.println(lphm.get(2));
         lphm.put(2, "two");
         System.out.println(lphm);
 
